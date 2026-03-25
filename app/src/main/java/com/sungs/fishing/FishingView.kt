@@ -30,20 +30,27 @@ class FishingView @JvmOverloads constructor(
     // ── 단어 단계 ──
     // 평화 → 관심 → 공격 → 광기
     private val calmWords = listOf(
-        "고요", "평화", "바람", "물결", "숨", "하늘",
-        "구름", "새벽", "달빛", "호수", "잔잔", "흐름"
+        "귀여워", "so cute", "かわいい", "可爱", "süß", "qué lindo",
+        "파이팅", "wholesome", "お疲れ様", "加油", "echt toll", "ánimo",
+        "좋은 하루", "love this", "いいね", "太棒了", "danke dir", "me encanta"
     )
+
     private val curiousWords = listOf(
-        "뭐야", "어디", "누구", "왜?", "헐", "진짜?",
-        "ㅋㅋ", "아니", "그래서", "뭔데", "보자", "어?"
+        "뭐임?", "wait what", "は？", "真的假的", "was?", "¿qué?",
+        "주작?", "sauce?", "ソースは？", "吃瓜", "Quelle?", "contexto?",
+        "누구", "fr?", "マジで？", "蹲", "echt jetzt?", "wut"
     )
+
     private val aggressiveWords = listOf(
-        "꺼져", "닥쳐", "역겹다", "쓰레기", "한심",
-        "못났다", "짜증", "최악", "혐오", "싫다"
+        "어그로", "cringe", "うざ", "杠精", "halt's Maul", "cállate",
+        "관종", "stfu", "キモい", "恶心", "Müll", "basura",
+        "노답", "touch grass", "構ってちゃん", "闭嘴", "nerv nicht", "tóxico"
     )
+
     private val frenzyWords = listOf(
-        "죽어", "꺼져라", "인간쓰레기", "벌레", "사라져",
-        "지옥", "파괴", "저주", "말종", "끝장"
+        "나락가라", "cancelled", "炎上しろ", "封杀", "brenn", "funado",
+        "죽어", "die", "死ね", "去死", "stirb", "muérete",
+        "사회악", "scum", "晒せ", "网暴", "Abschaum", "escoria"
     )
 
     // ── 물고기(단어) ──
