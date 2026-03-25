@@ -66,7 +66,10 @@ class FishingView @JvmOverloads constructor(
         var size: Float,
         var alpha: Int,
         var state: FishState = FishState.CALM,
-        var frenzyLevel: Float = 0f     // 개별 흥분도
+        var frenzyLevel: Float = 0f,     // 개별 흥분도
+        var feedCount: Int = 0,
+        var isCorrupted: Boolean = false,
+        val corruptionThreshold: Int = Random.nextInt(3, 10)
     )
 
     enum class FishState { CALM, RUSHING, FEEDING, DISPERSING }
@@ -279,6 +282,12 @@ class FishingView @JvmOverloads constructor(
         // 미끼 근처에 도달하면 먹기 상태
         if (dist < 80f) {
             fish.state = FishState.FEEDING
+
+            fish.feedCount++
+
+            if (fish.feedCount >= fish.corruptionThreshold) {
+                fish.isCorrupted = true
+            }
         }
     }
 
@@ -399,7 +408,13 @@ class FishingView @JvmOverloads constructor(
 
             // 단어 선택
             val word = when {
-                t < 0.2f -> calmWords[fish.wordIndex % calmWords.size]
+                t < 0.2f -> {
+                    if (fish.isCorrupted) {
+                        curiousWords[fish.wordIndex % curiousWords.size]
+                    } else {
+                        calmWords[fish.wordIndex % calmWords.size]
+                    }
+                }
                 t < 0.5f -> curiousWords[fish.wordIndex % curiousWords.size]
                 t < 0.8f -> aggressiveWords[fish.wordIndex % aggressiveWords.size]
                 else -> frenzyWords[fish.wordIndex % frenzyWords.size]
