@@ -35,6 +35,12 @@ class FishingView @JvmOverloads constructor(
         "좋은 하루", "love this", "いいね", "太棒了", "danke dir", "me encanta"
     )
 
+    private val corruptedCalmWords = listOf(
+        "ㅋㅋ", "mid", "まあまあ", "一般般", "naja", "meh",
+        "알빠노", "ratio", "草", "无语", "egal", "ni fu ni fa",
+        "노잼", "whatever", "つまんね", "呵呵", "ach komm", "bla bla"
+    )
+
     private val curiousWords = listOf(
         "뭐임?", "wait what", "は？", "真的假的", "was?", "¿qué?",
         "주작?", "sauce?", "ソースは？", "吃瓜", "Quelle?", "contexto?",
@@ -410,7 +416,7 @@ class FishingView @JvmOverloads constructor(
             val word = when {
                 t < 0.2f -> {
                     if (fish.isCorrupted) {
-                        curiousWords[fish.wordIndex % curiousWords.size]
+                        corruptedCalmWords[fish.wordIndex % corruptedCalmWords.size]
                     } else {
                         calmWords[fish.wordIndex % calmWords.size]
                     }
