@@ -2,22 +2,23 @@ package com.sungs.fishing
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.WindowManager
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
-@Suppress("DEPRECATION")
 class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 전체화면
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        actionBar?.hide()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        // 작품을 화면에 올린다
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
         setContentView(FishingView(this))
     }
 }

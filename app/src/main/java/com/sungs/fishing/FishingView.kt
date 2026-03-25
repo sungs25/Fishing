@@ -1,5 +1,6 @@
 package com.sungs.fishing
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -128,7 +129,7 @@ class FishingView @JvmOverloads constructor(
         screenH = h.toFloat()
 
         if (fishes.isEmpty()) {
-            // 물고기(단어) 생성
+            // 물고기 생성
             repeat(18) { spawnFish() }
             // 물결 레이어 생성
             repeat(5) { i ->
@@ -155,7 +156,7 @@ class FishingView @JvmOverloads constructor(
             wanderAngle = Random.nextFloat() * 360f,
             wanderTimer = Random.nextFloat() * 200f,
             wordIndex = Random.nextInt(calmWords.size),
-            size = Random.nextFloat() * 14f + 18f,
+            size = Random.nextFloat() * 18f + 32f,
             alpha = Random.nextInt(60) + 140
         ))
     }
@@ -413,24 +414,36 @@ class FishingView @JvmOverloads constructor(
             textPaint.textSize = sizeNow
             textPaint.textAlign = Paint.Align.CENTER
             textPaint.alpha = fish.alpha
+            textPaint.style = if (t > 0.5f) {
+                textPaint.strokeWidth = t * 3f
+                Paint.Style.FILL_AND_STROKE
+            } else {
+                textPaint.strokeWidth = 0f
+                Paint.Style.FILL
+            }
 
             canvas.drawText(word, fish.x + shakeX, fish.y + shakeY, textPaint)
         }
     }
 
     // ── 터치 = 미끼 던지기 ──
+
+    override fun performClick(): Boolean {
+        super.performClick()
+        return true
+    }
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 dropBait(event.x, event.y)
+                performClick()
             }
             MotionEvent.ACTION_MOVE -> {
-                // 미끼 위치 업데이트
                 baitX = event.x
                 baitY = event.y
             }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                // 손을 떼도 미끼는 남아있다 — 자연 소멸될 때까지
             }
         }
         return true
