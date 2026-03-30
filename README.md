@@ -1,5 +1,11 @@
 Fishing 🎣
-An interactive art piece about online hatred, built as an Android app.
+<br>**An interactive art piece about online hatred, built as an Android app.**
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e42d2163-4a26-425e-8766-4cbe44d5442d" width="300" />
+  <img src="https://github.com/user-attachments/assets/578cd89e-87ae-4931-bca7-12ef0db82817" width="300" />
+</p>
+
 Touch the screen. Watch what happens.
 A quiet surface. Gentle waves. Peaceful words drifting in six languages — "so cute," "귀여워," "いいね," "wholesome," "太棒了," "süß."
 But you touch anyway.
